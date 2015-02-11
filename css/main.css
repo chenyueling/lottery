@@ -1,0 +1,58 @@
+
+body{
+	background:url(../images/body_bg.jpg) 0px 0px repeat-x #000;
+}
+
+.main_bg{
+	background: url(../images/1024x768.png) top center no-repeat;
+	height: 768px;
+}
+
+.main{	
+	width:100%;
+	height:100%;
+	position:relative;
+	margin:0 auto;
+}
+
+.num_mask{
+	background: url(../images/num_mask.png) 0px 0px no-repeat;
+	height: 184px;
+	width: 434px;
+	position: absolute;
+	left: 50%;
+	top: 373px;
+	margin-left: -217px;
+	z-index: 9;
+}
+
+.num_box{
+	height: 345px;
+	width: 437px;
+	position: absolute;
+	left: 50%;
+	top: 373px;
+	margin-left: -219px;
+	z-index: 8;
+	overflow: hidden;
+	text-align: center;
+}
+.num{
+	background: url(../images/num.png) top center repeat-y;
+	width: 140px;
+	height: 209px;
+	float: left;
+	margin-right: 5px;
+}
+
+.btn{
+	background: url(../images/btn_start.png) 0px 0px no-repeat;
+	width: 181px;
+	height: 89px;
+	position: absolute;
+	left: 50%;
+	bottom: -12px;
+	margin-left: -92px;
+	cursor: pointer;
+	clear: both;
+}

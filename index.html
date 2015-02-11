@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>极光推送2014年终抽奖</title>
+<script type="text/javascript" src="js/jquery-1.7.2-min.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+<div class="main_bg">
+  <div class="main">
+    <div class="num_mask"></div>
+    <div class="num_box">
+      <div class="num"></div>
+      <div class="num"></div>
+      <div class="num"></div>
+      <div class="btn"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+var isBegin = false;
+var luckyCodes = [];
+function numRand() {
+	var x = 81; //上限
+	var y = 1; //下限
+	var n = 3;
+	var rand = parseInt(Math.random() * (x - y + 1) + y);
+	var j = 0;
+
+    while (isLuckyCodes(rand)) {
+        rand = parseInt(Math.random() * (x - y + 1) + y);
+    }
+	var j = 0;
+	
+    luckyCodes.push(rand);
+	var i = (rand + "").length;
+    while(i++ < n) rand = "0" + rand;
+
+	return rand;
+}
+function isLuckyCodes(num) {
+    for (var i=0; i<luckyCodes.length; i++) {
+        if (luckyCodes[i] == num) {
+            return true;
+        }
+    }
+    return false;
+}
+
+$(function(){
+
+	$('.btn').mousedown(function(){
+  		$('.btn').css("background","url(images/click_btn_start.png) 0px 0px no-repeat");
+	});
+
+	$('.btn').mouseup(function(){
+  		$('.btn').css("background","url(images/btn_start.png) 0px 0px no-repeat");
+	});
+
+
+
+    var u = 213.2;
+    $('.btn').click(function(){
+
+    	$('body').append('<embed id="xxx" src="music/388.mp3" autostart="true" hidden="true" loop="false">'); 
+
+        if(isBegin) return false;
+        isBegin = true;
+        $(".num").css('backgroundPositionY',0);
+        var result = numRand();
+        //alert(result);
+        $('#res').text('result = '+result);
+        var num_arr = (result+'').split('');
+        $(".num").each(function(index){
+            var _num = $(this);
+            setTimeout(function(){
+                _num.animate({
+                    backgroundPositionY: (u*60) - (u*num_arr[index])
+                },{
+                    duration: 6000+index*3000,
+                    easing: "easeInOutCirc",
+                    complete: function(){
+                        isBegin = false;
+                       $("#music").remove(); 
+                        //if(index==3) isBegin = false;
+                        //var pos = _num.css('backgroundPositionY').replace('px','');
+                        //_num.css('backgroundPositionY',pos%u);
+                    }
+                });
+            }, index * 300);
+        });
+    });
+});
+</script>
